@@ -119,6 +119,8 @@ namespace Ellis.WinApp.Testing.Framework.Actions
 
         public static void SetCheckBox(WinCheckBox checkbox, string check)
         {
+            checkbox.WaitForControlReady();
+            checkbox.SetFocus();
             checkbox.Checked = Convert.ToBoolean(check);
         }
 
@@ -138,6 +140,8 @@ namespace Ellis.WinApp.Testing.Framework.Actions
             }).GetChildren(), child => child.Name.Equals(control)).GetEnumerator())
             {
                 if (!enumerator.MoveNext()) return false;
+                enumerator.Current.WaitForControlReady();
+                enumerator.Current.SetFocus();
                 enumerator.Current.SetProperty("Selected", true);
                 Playback.Wait(2000);
                 return true;
@@ -149,7 +153,11 @@ namespace Ellis.WinApp.Testing.Framework.Actions
             var btnCont = GetControlCollection(radioButtonControl);
 
             foreach (var control in btnCont)
+            {
+                control.WaitForControlReady();
+                control.SetFocus();
                 Mouse.Click(control);
+            }
         }
 
         public static void SetText(UITestControl windowProperties, string control, string data)

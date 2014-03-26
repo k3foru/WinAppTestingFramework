@@ -120,6 +120,7 @@ namespace Ellis.WinApp.Testing.Framework.Actions
         public static void SelectDropdownByText(UITestControl window, string controlName, string text)
         {
             var control = Actions.GetWindowChild(window, controlName);
+            control.SetFocus();
             SelectDropdownByText(control, text);
         }
 

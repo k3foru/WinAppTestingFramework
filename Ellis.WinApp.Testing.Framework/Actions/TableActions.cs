@@ -15,6 +15,7 @@ namespace Ellis.WinApp.Testing.Framework.Actions
             var table = (WinTable)Actions.GetWindowChild(windowProperties, tableName);
             var row = table.Container.SearchFor<WinRow>(new { Name = rowName });
             var cell = row.Container.SearchFor<WinCell>(new { Name = cellName });
+            cell.SetFocus();
             return cell;
         }
 
@@ -22,6 +23,7 @@ namespace Ellis.WinApp.Testing.Framework.Actions
         {
             var table = (WinTable)Actions.GetWindowChild(windowProperties, tableName);
             var row = table.Container.SearchFor<WinRow>(new { Name = rowName });
+            row.SetFocus();
             return row;
         }
 
@@ -36,6 +38,7 @@ namespace Ellis.WinApp.Testing.Framework.Actions
                     Name = columnName
                 });
                 if (winCell.GetProperty("Value").ToString() != columnValue) continue;
+                winCell.SetFocus();
                 Mouse.DoubleClick(winCell);
                 return true;
             }
@@ -54,6 +57,7 @@ namespace Ellis.WinApp.Testing.Framework.Actions
                 var callValue = rowHeader.GetProperty("Value").ToString();
 
                 if (callValue != columnValue) continue;
+                rowHeader.SetFocus();
                 Mouse.Click(rowHeader);
                 return true;
             }

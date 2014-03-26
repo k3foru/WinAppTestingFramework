@@ -19,6 +19,7 @@ namespace Ellis.WinApp.Testing.Framework.Actions
 
             foreach (var item in allValues.Where(item => item != currentValue))
             {
+                control.SetFocus();
                 control.SelectedItemsAsString = value;
                 break;
             }
