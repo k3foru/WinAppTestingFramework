@@ -1,0 +1,1 @@
+<Playlist Version="1.0"><Add Test="EllisWinAppTest.WorkerTests.WorkerProfileTests.AddLicensesForWorker" /><Add Test="EllisWinAppTest.CustomerTests.CreateCustomerTest.CreateCODCustomerWithFedIdTest" /></Playlist>

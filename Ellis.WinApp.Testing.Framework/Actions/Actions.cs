@@ -50,7 +50,7 @@ namespace Ellis.WinApp.Testing.Framework.Actions
             SendKeys.SendWait(text);
         }
 
-        //    public static void MouseClickOnCoordinates(UITestControl control)
+        //public static void MouseClickOnCoordinates(UITestControl control)
         //{
         //  control.WaitForControlReady();
         //  control.SetFocus();
@@ -76,7 +76,7 @@ namespace Ellis.WinApp.Testing.Framework.Actions
         public static void MouseClickOnCoordinates(UITestControl control)
         {
             control.WaitForControlReady();
-              control.SetFocus();
+            control.SetFocus();
             var clickPoints = new Point(control.BoundingRectangle.Width / 2 + control.BoundingRectangle.X,
                 control.BoundingRectangle.Height / 2 + control.BoundingRectangle.Y);
             Mouse.Click(clickPoints);

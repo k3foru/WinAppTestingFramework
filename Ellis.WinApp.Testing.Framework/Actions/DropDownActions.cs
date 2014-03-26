@@ -123,35 +123,35 @@ namespace Ellis.WinApp.Testing.Framework.Actions
             SelectDropdownByText(control, text);
         }
 
-        public static void SelectFromDropDown(UITestControlCollection dropDownCollection, string dropdownName,
-            string data)
-        {
-            foreach (var control in dropDownCollection.Cast<WinComboBox>()
-                .Where(control => control.FriendlyName != null && control.ControlName.Equals(dropdownName)
-                    && (!control.SelectedItem.Equals(data, StringComparison.InvariantCultureIgnoreCase))))
-            {
-                SetDropDown(control, data);
-                break;
-            }
-        }
+        //public static void SelectFromDropDown(UITestControlCollection dropDownCollection, string dropdownName,
+        //    string data)
+        //{
+        //    foreach (var control in dropDownCollection.Cast<WinComboBox>()
+        //        .Where(control => control.FriendlyName != null && control.ControlName.Equals(dropdownName)
+        //            && (!control.SelectedItem.Equals(data, StringComparison.InvariantCultureIgnoreCase))))
+        //    {
+        //        SetDropDown(control, data);
+        //        break;
+        //    }
+        //}
 
-        private static void SetDropDown(WinComboBox dropdownControl, string text)
-        {
-            if (string.IsNullOrEmpty(dropdownControl.SelectedItem))
-            {
-                MouseActions.Click(dropdownControl);
-                Actions.SendText(text);
-            }
-            else if (!dropdownControl.SelectedItem.Equals(text))
-            {
-                MouseActions.Click(dropdownControl);
-                Actions.SendText(text);
-                //foreach (var t in dropdownControl.Items.Where(t => t.Name == text))
-                //{
-                //    dropdownControl.SelectedItem = text;
-                //    break;
-                //}
-            }
-        }
+        //private static void SetDropDown(WinComboBox dropdownControl, string text)
+        //{
+        //    if (string.IsNullOrEmpty(dropdownControl.SelectedItem))
+        //    {
+        //        MouseActions.Click(dropdownControl);
+        //        Actions.SendText(text);
+        //    }
+        //    else if (!dropdownControl.SelectedItem.Equals(text))
+        //    {
+        //        MouseActions.Click(dropdownControl);
+        //        Actions.SendText(text);
+        //        //foreach (var t in dropdownControl.Items.Where(t => t.Name == text))
+        //        //{
+        //        //    dropdownControl.SelectedItem = text;
+        //        //    break;
+        //        //}
+        //    }
+        //}
     }
 }
