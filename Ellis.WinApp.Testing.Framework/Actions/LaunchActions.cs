@@ -26,6 +26,7 @@ namespace Ellis.WinApp.Testing.Framework.Actions
                 myProc.UserName = username;
                 myProc.Password = s;
                 myProc.UseShellExecute = false;
+                myProc.LoadUserProfile = true;
                 myProc.WorkingDirectory = Path.GetDirectoryName(path);
                 
             }
