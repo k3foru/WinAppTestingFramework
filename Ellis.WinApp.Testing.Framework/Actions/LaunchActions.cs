@@ -4,6 +4,7 @@
 //===============================================================================
 
 using System;
+using System.Configuration;
 using System.Diagnostics;
 using System.IO;
 using System.Net;
@@ -18,6 +19,23 @@ namespace Ellis.WinApp.Testing.Framework.Actions
         {
             var s = new NetworkCredential("", password).SecurePassword;
             var path = @appPath;
+
+            // Open App.Config of executable
+            var configFileMap = new ExeConfigurationFileMap();
+            configFileMap.ExeConfigFilename = @path + ".config";
+            var config = ConfigurationManager.OpenMappedExeConfiguration(configFileMap, ConfigurationUserLevel.None);
+
+            // Add an Application Setting.
+            config.AppSettings.Settings.Remove("IsBranch");
+            config.AppSettings.Settings.Add("IsBranch", "true");
+
+            // Save the configuration file.
+            config.Save(ConfigurationSaveMode.Modified);
+
+            // Force a reload of a changed section.
+            ConfigurationManager.RefreshSection("appSettings");
+            config.Save(ConfigurationSaveMode.Modified, true);
+
             var myProc = new ProcessStartInfo(path);
 
             try
@@ -26,9 +44,7 @@ namespace Ellis.WinApp.Testing.Framework.Actions
                 myProc.UserName = username;
                 myProc.Password = s;
                 myProc.UseShellExecute = false;
-                myProc.LoadUserProfile = true;
                 myProc.WorkingDirectory = Path.GetDirectoryName(path);
-                
             }
             catch (Exception)
             {
